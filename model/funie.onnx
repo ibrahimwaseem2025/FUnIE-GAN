@@ -1,0 +1,839 @@
+
+pytorch
+2.14.0+cpu:íÒ
+ù
+input
+down1.model.0.weightconv2dnode_Conv_88"Conv*
+group *
+pads@@@@ *
+auto_pad"NOTSET *
+strides@@ *
+	dilations@@ *
+kernel_shape@@ JØ
+	namespaceÊ: PyTorch.nets.funiegan.GeneratorFunieGAN/down1: PyTorch.nets.funiegan.UNetDown/down1.model: torch.nn.modules.container.Sequential/down1.model.0: torch.nn.modules.conv.Conv2d/conv2d: aten.conv2d.defaultJ?
+!pkg.onnxscript.rewriter.rule_nameRemoveOptionalBiasFromConvJÐ
+pkg.torch.onnx.class_hierarchy­['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J±
+pkg.torch.onnx.fx_node–%conv2d : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%x, %p_down1_model_0_weight, None, [2, 2], [1, 1]), kwargs = {})JU
+pkg.torch.onnx.name_scopes7['', 'down1', 'down1.model', 'down1.model.0', 'conv2d']JÎ
+pkg.torch.onnx.stack_trace¯File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 63, in forward
+    d1 = self.down1(x)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/conv.py", line 565, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+Ú
+
+conv2d
+leaky_relunode_leaky_relu"	LeakyRelu*
+alphaÍÌL> Jé
+	namespaceÛ: PyTorch.nets.funiegan.GeneratorFunieGAN/down1: PyTorch.nets.funiegan.UNetDown/down1.model: torch.nn.modules.container.Sequential/down1.model.1: torch.nn.modules.activation.LeakyReLU/leaky_relu: aten.leaky_relu.defaultJÝ
+pkg.torch.onnx.class_hierarchyº['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J“
+pkg.torch.onnx.fx_nodey%leaky_relu : [num_users=2] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%conv2d, 0.2), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'down1', 'down1.model', 'down1.model.1', 'leaky_relu']JÙ
+pkg.torch.onnx.stack_traceºFile "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 63, in forward
+    d1 = self.down1(x)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 923, in forward
+    return F.leaky_relu(input, self.negative_slope, self.inplace)
+¬
+
+leaky_relu
+down2.model.0.weight
+down2.model.0.weight_biasgetitemnode_Conv_90"Conv*
+group *
+pads@@@@ *
+auto_pad"NOTSET *
+strides@@ *
+	dilations@@ *
+kernel_shape@@ Jž
+	namespace: PyTorch.nets.funiegan.GeneratorFunieGAN/down2: PyTorch.nets.funiegan.UNetDown/down2.model: torch.nn.modules.container.Sequential/down2.model.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJø
+pkg.torch.onnx.class_hierarchyÕ['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J¾
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_1, %p_down2_model_1_weight, %p_down2_model_1_bias, %b_down2_model_1_running_mean, %b_down2_model_1_running_var, 0.8, 1e-05), kwargs = {})Js
+pkg.torch.onnx.name_scopesU['', 'down2', 'down2.model', 'down2.model.1', '_native_batch_norm_legit_no_training']J°
+pkg.torch.onnx.stack_trace‘File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 64, in forward
+    d2 = self.down2(d1)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/batchnorm.py", line 210, in forward
+    return F.batch_norm(
+ç
+
+getitemleaky_relu_1node_leaky_relu_1"	LeakyRelu*
+alphaÍÌL> Jë
+	namespaceÝ: PyTorch.nets.funiegan.GeneratorFunieGAN/down2: PyTorch.nets.funiegan.UNetDown/down2.model: torch.nn.modules.container.Sequential/down2.model.2: torch.nn.modules.activation.LeakyReLU/leaky_relu_1: aten.leaky_relu.defaultJÝ
+pkg.torch.onnx.class_hierarchyº['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J–
+pkg.torch.onnx.fx_node|%leaky_relu_1 : [num_users=2] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%getitem, 0.2), kwargs = {})J[
+pkg.torch.onnx.name_scopes=['', 'down2', 'down2.model', 'down2.model.2', 'leaky_relu_1']JÚ
+pkg.torch.onnx.stack_trace»File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 64, in forward
+    d2 = self.down2(d1)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 923, in forward
+    return F.leaky_relu(input, self.negative_slope, self.inplace)
+¶
+leaky_relu_1
+down3.model.0.weight
+down3.model.0.weight_bias	getitem_3node_Conv_92"Conv*
+group *
+pads@@@@ *
+auto_pad"NOTSET *
+strides@@ *
+	dilations@@ *
+kernel_shape@@ J 
+	namespace’: PyTorch.nets.funiegan.GeneratorFunieGAN/down3: PyTorch.nets.funiegan.UNetDown/down3.model: torch.nn.modules.container.Sequential/down3.model.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_1: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJø
+pkg.torch.onnx.class_hierarchyÕ['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JÀ
+pkg.torch.onnx.fx_node¥%_native_batch_norm_legit_no_training_1 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_2, %p_down3_model_1_weight, %p_down3_model_1_bias, %b_down3_model_1_running_mean, %b_down3_model_1_running_var, 0.8, 1e-05), kwargs = {})Ju
+pkg.torch.onnx.name_scopesW['', 'down3', 'down3.model', 'down3.model.1', '_native_batch_norm_legit_no_training_1']J°
+pkg.torch.onnx.stack_trace‘File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 65, in forward
+    d3 = self.down3(d2)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/batchnorm.py", line 210, in forward
+    return F.batch_norm(
+ë
+
+	getitem_3leaky_relu_2node_leaky_relu_2"	LeakyRelu*
+alphaÍÌL> Jë
+	namespaceÝ: PyTorch.nets.funiegan.GeneratorFunieGAN/down3: PyTorch.nets.funiegan.UNetDown/down3.model: torch.nn.modules.container.Sequential/down3.model.2: torch.nn.modules.activation.LeakyReLU/leaky_relu_2: aten.leaky_relu.defaultJÝ
+pkg.torch.onnx.class_hierarchyº['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J˜
+pkg.torch.onnx.fx_node~%leaky_relu_2 : [num_users=2] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%getitem_3, 0.2), kwargs = {})J[
+pkg.torch.onnx.name_scopes=['', 'down3', 'down3.model', 'down3.model.2', 'leaky_relu_2']JÚ
+pkg.torch.onnx.stack_trace»File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 65, in forward
+    d3 = self.down3(d2)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 923, in forward
+    return F.leaky_relu(input, self.negative_slope, self.inplace)
+¶
+leaky_relu_2
+down4.model.0.weight
+down4.model.0.weight_bias	getitem_6node_Conv_94"Conv*
+group *
+pads@@@@ *
+auto_pad"NOTSET *
+strides@@ *
+	dilations@@ *
+kernel_shape@@ J 
+	namespace’: PyTorch.nets.funiegan.GeneratorFunieGAN/down4: PyTorch.nets.funiegan.UNetDown/down4.model: torch.nn.modules.container.Sequential/down4.model.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_2: aten._native_batch_norm_legit_no_training.defaultJV
+!pkg.onnxscript.rewriter.rule_name1FuseBatchNormIntoConv, RemoveOptionalBiasFromConvJø
+pkg.torch.onnx.class_hierarchyÕ['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']JÀ
+pkg.torch.onnx.fx_node¥%_native_batch_norm_legit_no_training_2 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_3, %p_down4_model_1_weight, %p_down4_model_1_bias, %b_down4_model_1_running_mean, %b_down4_model_1_running_var, 0.8, 1e-05), kwargs = {})Ju
+pkg.torch.onnx.name_scopesW['', 'down4', 'down4.model', 'down4.model.1', '_native_batch_norm_legit_no_training_2']J°
+pkg.torch.onnx.stack_trace‘File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 66, in forward
+    d4 = self.down4(d3)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/batchnorm.py", line 210, in forward
+    return F.batch_norm(
+ë
+
+	getitem_6leaky_relu_3node_leaky_relu_3"	LeakyRelu*
+alphaÍÌL> Jë
+	namespaceÝ: PyTorch.nets.funiegan.GeneratorFunieGAN/down4: PyTorch.nets.funiegan.UNetDown/down4.model: torch.nn.modules.container.Sequential/down4.model.2: torch.nn.modules.activation.LeakyReLU/leaky_relu_3: aten.leaky_relu.defaultJÝ
+pkg.torch.onnx.class_hierarchyº['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J˜
+pkg.torch.onnx.fx_node~%leaky_relu_3 : [num_users=2] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%getitem_6, 0.2), kwargs = {})J[
+pkg.torch.onnx.name_scopes=['', 'down4', 'down4.model', 'down4.model.2', 'leaky_relu_3']JÚ
+pkg.torch.onnx.stack_trace»File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 66, in forward
+    d4 = self.down4(d3)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 923, in forward
+    return F.leaky_relu(input, self.negative_slope, self.inplace)
+”
+leaky_relu_3
+down5.model.0.weightconv2d_4node_Conv_95"Conv*
+group *
+pads@@@@ *
+auto_pad"NOTSET *
+strides@@ *
+	dilations@@ *
+kernel_shape@@ JÚ
+	namespaceÌ: PyTorch.nets.funiegan.GeneratorFunieGAN/down5: PyTorch.nets.funiegan.UNetDown/down5.model: torch.nn.modules.container.Sequential/down5.model.0: torch.nn.modules.conv.Conv2d/conv2d_4: aten.conv2d.defaultJ?
+!pkg.onnxscript.rewriter.rule_nameRemoveOptionalBiasFromConvJÐ
+pkg.torch.onnx.class_hierarchy­['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J¾
+pkg.torch.onnx.fx_node£%conv2d_4 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%leaky_relu_3, %p_down5_model_0_weight, None, [2, 2], [1, 1]), kwargs = {})JW
+pkg.torch.onnx.name_scopes9['', 'down5', 'down5.model', 'down5.model.0', 'conv2d_4']JÏ
+pkg.torch.onnx.stack_trace°File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 67, in forward
+    d5 = self.down5(d4)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/conv.py", line 565, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+é
+
+conv2d_4leaky_relu_4node_leaky_relu_4"	LeakyRelu*
+alphaÍÌL> Jë
+	namespaceÝ: PyTorch.nets.funiegan.GeneratorFunieGAN/down5: PyTorch.nets.funiegan.UNetDown/down5.model: torch.nn.modules.container.Sequential/down5.model.1: torch.nn.modules.activation.LeakyReLU/leaky_relu_4: aten.leaky_relu.defaultJÝ
+pkg.torch.onnx.class_hierarchyº['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetDown', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.LeakyReLU', 'aten.leaky_relu.default']J—
+pkg.torch.onnx.fx_node}%leaky_relu_4 : [num_users=1] = call_function[target=torch.ops.aten.leaky_relu.default](args = (%conv2d_4, 0.2), kwargs = {})J[
+pkg.torch.onnx.name_scopes=['', 'down5', 'down5.model', 'down5.model.1', 'leaky_relu_4']JÚ
+pkg.torch.onnx.stack_trace»File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 67, in forward
+    d5 = self.down5(d4)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 20, in forward
+    return self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 923, in forward
+    return F.leaky_relu(input, self.negative_slope, self.inplace)
+´
+leaky_relu_4
+up1.model.0.weight
+up1.model.0.weight_bias	getitem_9node_ConvTranspose_96"ConvTranspose*
+group *
+auto_pad"NOTSET *
+strides@@ *
+pads@@@@ *
+output_padding@ @  *
+	dilations@@ *
+kernel_shape@@ J˜
+	namespaceŠ: PyTorch.nets.funiegan.GeneratorFunieGAN/up1: PyTorch.nets.funiegan.UNetUp/up1.model: torch.nn.modules.container.Sequential/up1.model.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_3: aten._native_batch_norm_legit_no_training.defaultJC
+!pkg.onnxscript.rewriter.rule_nameFuseBatchNormIntoConvTransposeJö
+pkg.torch.onnx.class_hierarchyÓ['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J»
+pkg.torch.onnx.fx_node %_native_batch_norm_legit_no_training_3 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%convolution, %p_up1_model_1_weight, %p_up1_model_1_bias, %b_up1_model_1_running_mean, %b_up1_model_1_running_var, 0.8, 1e-05), kwargs = {})Jo
+pkg.torch.onnx.name_scopesQ['', 'up1', 'up1.model', 'up1.model.1', '_native_batch_norm_legit_no_training_3']J¯
+pkg.torch.onnx.stack_traceFile "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 68, in forward
+    u1 = self.up1(d5, d4)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/batchnorm.py", line 210, in forward
+    return F.batch_norm(
+é	
+	getitem_9relu	node_relu"ReluJÐ
+	namespaceÂ: PyTorch.nets.funiegan.GeneratorFunieGAN/up1: PyTorch.nets.funiegan.UNetUp/up1.model: torch.nn.modules.container.Sequential/up1.model.2: torch.nn.modules.activation.ReLU/relu: aten.relu.defaultJÐ
+pkg.torch.onnx.class_hierarchy­['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']J†
+pkg.torch.onnx.fx_nodel%relu : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_9,), kwargs = {})JM
+pkg.torch.onnx.name_scopes/['', 'up1', 'up1.model', 'up1.model.2', 'relu']JÆ
+pkg.torch.onnx.stack_trace§File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 68, in forward
+    u1 = self.up1(d5, d4)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 143, in forward
+    return F.relu(input, inplace=self.inplace)
+ª
+relu
+leaky_relu_3catnode_cat"Concat*
+axis Jn
+	namespacea: PyTorch.nets.funiegan.GeneratorFunieGAN/up1: PyTorch.nets.funiegan.UNetUp/cat: aten.cat.defaultJ
+pkg.torch.onnx.class_hierarchy_['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'aten.cat.default']J’
+pkg.torch.onnx.fx_nodex%cat : [num_users=1] = call_function[target=torch.ops.aten.cat.default](args = ([%relu, %leaky_relu_3], 1), kwargs = {})J0
+pkg.torch.onnx.name_scopes['', 'up1', 'cat']J´
+pkg.torch.onnx.stack_trace•File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 68, in forward
+    u1 = self.up1(d5, d4)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 35, in forward
+    x = torch.cat((x, skip_input), 1)
+®
+cat
+up2.model.0.weight
+up2.model.0.weight_bias
+getitem_12node_ConvTranspose_97"ConvTranspose*
+group *
+auto_pad"NOTSET *
+strides@@ *
+pads@@@@ *
+output_padding@ @  *
+	dilations@@ *
+kernel_shape@@ J˜
+	namespaceŠ: PyTorch.nets.funiegan.GeneratorFunieGAN/up2: PyTorch.nets.funiegan.UNetUp/up2.model: torch.nn.modules.container.Sequential/up2.model.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_4: aten._native_batch_norm_legit_no_training.defaultJC
+!pkg.onnxscript.rewriter.rule_nameFuseBatchNormIntoConvTransposeJö
+pkg.torch.onnx.class_hierarchyÓ['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J½
+pkg.torch.onnx.fx_node¢%_native_batch_norm_legit_no_training_4 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%convolution_1, %p_up2_model_1_weight, %p_up2_model_1_bias, %b_up2_model_1_running_mean, %b_up2_model_1_running_var, 0.8, 1e-05), kwargs = {})Jo
+pkg.torch.onnx.name_scopesQ['', 'up2', 'up2.model', 'up2.model.1', '_native_batch_norm_legit_no_training_4']J¯
+pkg.torch.onnx.stack_traceFile "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 69, in forward
+    u2 = self.up2(u1, d3)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/batchnorm.py", line 210, in forward
+    return F.batch_norm(
+õ	
+
+getitem_12relu_1node_relu_1"ReluJÒ
+	namespaceÄ: PyTorch.nets.funiegan.GeneratorFunieGAN/up2: PyTorch.nets.funiegan.UNetUp/up2.model: torch.nn.modules.container.Sequential/up2.model.2: torch.nn.modules.activation.ReLU/relu_1: aten.relu.defaultJÐ
+pkg.torch.onnx.class_hierarchy­['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']J‰
+pkg.torch.onnx.fx_nodeo%relu_1 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_12,), kwargs = {})JO
+pkg.torch.onnx.name_scopes1['', 'up2', 'up2.model', 'up2.model.2', 'relu_1']JÆ
+pkg.torch.onnx.stack_trace§File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 69, in forward
+    u2 = self.up2(u1, d3)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 143, in forward
+    return F.relu(input, inplace=self.inplace)
+¸
+relu_1
+leaky_relu_2cat_1
+node_cat_1"Concat*
+axis Jp
+	namespacec: PyTorch.nets.funiegan.GeneratorFunieGAN/up2: PyTorch.nets.funiegan.UNetUp/cat_1: aten.cat.defaultJ
+pkg.torch.onnx.class_hierarchy_['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'aten.cat.default']J–
+pkg.torch.onnx.fx_node|%cat_1 : [num_users=1] = call_function[target=torch.ops.aten.cat.default](args = ([%relu_1, %leaky_relu_2], 1), kwargs = {})J2
+pkg.torch.onnx.name_scopes['', 'up2', 'cat_1']J´
+pkg.torch.onnx.stack_trace•File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 69, in forward
+    u2 = self.up2(u1, d3)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 35, in forward
+    x = torch.cat((x, skip_input), 1)
+°
+cat_1
+up3.model.0.weight
+up3.model.0.weight_bias
+getitem_15node_ConvTranspose_98"ConvTranspose*
+group *
+auto_pad"NOTSET *
+strides@@ *
+pads@@@@ *
+output_padding@ @  *
+	dilations@@ *
+kernel_shape@@ J˜
+	namespaceŠ: PyTorch.nets.funiegan.GeneratorFunieGAN/up3: PyTorch.nets.funiegan.UNetUp/up3.model: torch.nn.modules.container.Sequential/up3.model.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_5: aten._native_batch_norm_legit_no_training.defaultJC
+!pkg.onnxscript.rewriter.rule_nameFuseBatchNormIntoConvTransposeJö
+pkg.torch.onnx.class_hierarchyÓ['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J½
+pkg.torch.onnx.fx_node¢%_native_batch_norm_legit_no_training_5 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%convolution_2, %p_up3_model_1_weight, %p_up3_model_1_bias, %b_up3_model_1_running_mean, %b_up3_model_1_running_var, 0.8, 1e-05), kwargs = {})Jo
+pkg.torch.onnx.name_scopesQ['', 'up3', 'up3.model', 'up3.model.1', '_native_batch_norm_legit_no_training_5']J¯
+pkg.torch.onnx.stack_traceFile "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 70, in forward
+    u3 = self.up3(u2, d2)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/batchnorm.py", line 210, in forward
+    return F.batch_norm(
+õ	
+
+getitem_15relu_2node_relu_2"ReluJÒ
+	namespaceÄ: PyTorch.nets.funiegan.GeneratorFunieGAN/up3: PyTorch.nets.funiegan.UNetUp/up3.model: torch.nn.modules.container.Sequential/up3.model.2: torch.nn.modules.activation.ReLU/relu_2: aten.relu.defaultJÐ
+pkg.torch.onnx.class_hierarchy­['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']J‰
+pkg.torch.onnx.fx_nodeo%relu_2 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_15,), kwargs = {})JO
+pkg.torch.onnx.name_scopes1['', 'up3', 'up3.model', 'up3.model.2', 'relu_2']JÆ
+pkg.torch.onnx.stack_trace§File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 70, in forward
+    u3 = self.up3(u2, d2)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 143, in forward
+    return F.relu(input, inplace=self.inplace)
+¸
+relu_2
+leaky_relu_1cat_2
+node_cat_2"Concat*
+axis Jp
+	namespacec: PyTorch.nets.funiegan.GeneratorFunieGAN/up3: PyTorch.nets.funiegan.UNetUp/cat_2: aten.cat.defaultJ
+pkg.torch.onnx.class_hierarchy_['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'aten.cat.default']J–
+pkg.torch.onnx.fx_node|%cat_2 : [num_users=1] = call_function[target=torch.ops.aten.cat.default](args = ([%relu_2, %leaky_relu_1], 1), kwargs = {})J2
+pkg.torch.onnx.name_scopes['', 'up3', 'cat_2']J´
+pkg.torch.onnx.stack_trace•File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 70, in forward
+    u3 = self.up3(u2, d2)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 35, in forward
+    x = torch.cat((x, skip_input), 1)
+±
+cat_2
+up4.model.0.weight
+up4.model.0.weight_bias
+getitem_18node_ConvTranspose_99"ConvTranspose*
+group *
+auto_pad"NOTSET *
+strides@@ *
+pads@@@@ *
+output_padding@ @  *
+	dilations@@ *
+kernel_shape@@ J˜
+	namespaceŠ: PyTorch.nets.funiegan.GeneratorFunieGAN/up4: PyTorch.nets.funiegan.UNetUp/up4.model: torch.nn.modules.container.Sequential/up4.model.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_6: aten._native_batch_norm_legit_no_training.defaultJC
+!pkg.onnxscript.rewriter.rule_nameFuseBatchNormIntoConvTransposeJö
+pkg.torch.onnx.class_hierarchyÓ['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J½
+pkg.torch.onnx.fx_node¢%_native_batch_norm_legit_no_training_6 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%convolution_3, %p_up4_model_1_weight, %p_up4_model_1_bias, %b_up4_model_1_running_mean, %b_up4_model_1_running_var, 0.8, 1e-05), kwargs = {})Jo
+pkg.torch.onnx.name_scopesQ['', 'up4', 'up4.model', 'up4.model.1', '_native_batch_norm_legit_no_training_6']J°
+pkg.torch.onnx.stack_trace‘File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 71, in forward
+    u45 = self.up4(u3, d1)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/batchnorm.py", line 210, in forward
+    return F.batch_norm(
+ö	
+
+getitem_18relu_3node_relu_3"ReluJÒ
+	namespaceÄ: PyTorch.nets.funiegan.GeneratorFunieGAN/up4: PyTorch.nets.funiegan.UNetUp/up4.model: torch.nn.modules.container.Sequential/up4.model.2: torch.nn.modules.activation.ReLU/relu_3: aten.relu.defaultJÐ
+pkg.torch.onnx.class_hierarchy­['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']J‰
+pkg.torch.onnx.fx_nodeo%relu_3 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_18,), kwargs = {})JO
+pkg.torch.onnx.name_scopes1['', 'up4', 'up4.model', 'up4.model.2', 'relu_3']JÇ
+pkg.torch.onnx.stack_trace¨File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 71, in forward
+    u45 = self.up4(u3, d1)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 34, in forward
+    x = self.model(x)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 143, in forward
+    return F.relu(input, inplace=self.inplace)
+µ
+relu_3
+
+leaky_relucat_3
+node_cat_3"Concat*
+axis Jp
+	namespacec: PyTorch.nets.funiegan.GeneratorFunieGAN/up4: PyTorch.nets.funiegan.UNetUp/cat_3: aten.cat.defaultJ
+pkg.torch.onnx.class_hierarchy_['PyTorch.nets.funiegan.GeneratorFunieGAN', 'PyTorch.nets.funiegan.UNetUp', 'aten.cat.default']J”
+pkg.torch.onnx.fx_nodez%cat_3 : [num_users=1] = call_function[target=torch.ops.aten.cat.default](args = ([%relu_3, %leaky_relu], 1), kwargs = {})J2
+pkg.torch.onnx.name_scopes['', 'up4', 'cat_3']Jµ
+pkg.torch.onnx.stack_trace–File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 71, in forward
+    u45 = self.up4(u3, d1)
+  File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 35, in forward
+    x = torch.cat((x, skip_input), 1)
+å
+
+cat_3
+ 
+val_70upsample_nearest2dnode_upsample_nearest2d"Resize*&
+keep_aspect_ratio_policy"stretch *
+	antialias  *
+extrapolation_value     *
+exclude_outside  *
+nearest_mode"floor */
+coordinate_transformation_mode"
+asymmetric *
+cubic_coeff_a  @¿ *
+mode"nearest JÂ
+	namespace´: PyTorch.nets.funiegan.GeneratorFunieGAN/final: torch.nn.modules.container.Sequential/final.0: torch.nn.modules.upsampling.Upsample/upsample_nearest2d: aten.upsample_nearest2d.vecJ¾
+pkg.torch.onnx.class_hierarchy›['PyTorch.nets.funiegan.GeneratorFunieGAN', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.upsampling.Upsample', 'aten.upsample_nearest2d.vec']J¬
+pkg.torch.onnx.fx_node‘%upsample_nearest2d : [num_users=1] = call_function[target=torch.ops.aten.upsample_nearest2d.vec](args = (%cat_3, None, [2.0, 2.0]), kwargs = {})JL
+pkg.torch.onnx.name_scopes.['', 'final', 'final.0', 'upsample_nearest2d']J°
+pkg.torch.onnx.stack_trace‘File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 72, in forward
+    return self.final(u45)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/upsampling.py", line 174, in forward
+    return F.interpolate(
+¥
+
+upsample_nearest2d
+final.2.weight
+final.2.biasconv2d_5node_conv2d_5"Conv*
+group *
+pads@@@@ *
+auto_pad"NOTSET *
+strides@@ *
+	dilations@@ *
+kernel_shape@@ J¨
+	namespaceš: PyTorch.nets.funiegan.GeneratorFunieGAN/final: torch.nn.modules.container.Sequential/final.2: torch.nn.modules.conv.Conv2d/conv2d_5: aten.conv2d.defaultJ0
+!pkg.onnxscript.rewriter.rule_nameFuseConvPadJ®
+pkg.torch.onnx.class_hierarchy‹['PyTorch.nets.funiegan.GeneratorFunieGAN', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jº
+pkg.torch.onnx.fx_nodeŸ%conv2d_5 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%pad, %p_final_2_weight, %p_final_2_bias, [1, 1], [1, 1]), kwargs = {})JB
+pkg.torch.onnx.name_scopes$['', 'final', 'final.2', 'conv2d_5']JÍ
+pkg.torch.onnx.stack_trace®File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 72, in forward
+    return self.final(u45)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/conv.py", line 565, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+ý
+conv2d_5output	node_tanh"TanhJ¦
+	namespace˜: PyTorch.nets.funiegan.GeneratorFunieGAN/final: torch.nn.modules.container.Sequential/final.3: torch.nn.modules.activation.Tanh/tanh: aten.tanh.defaultJ°
+pkg.torch.onnx.class_hierarchy['PyTorch.nets.funiegan.GeneratorFunieGAN', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.Tanh', 'aten.tanh.default']J…
+pkg.torch.onnx.fx_nodek%tanh : [num_users=1] = call_function[target=torch.ops.aten.tanh.default](args = (%conv2d_5,), kwargs = {})J>
+pkg.torch.onnx.name_scopes ['', 'final', 'final.3', 'tanh']J³
+pkg.torch.onnx.stack_trace”File "/home/iboo/Projects/debris_detector/models/FUnIE-GAN/PyTorch/nets/funiegan.py", line 72, in forward
+    return self.final(u45)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/home/iboo/.local/lib/python3.14/site-packages/torch/nn/modules/activation.py", line 433, in forward
+    return torch.tanh(input)
+main_graph* Bfinal.2.biasJÐËÇ=/†¼Õô¾*_ Bdown1.model.0.weightj
+locationfunie.onnx.dataj
+offset5120j
+length6144p*c€ Bdown2.model.0.weightj
+locationfunie.onnx.dataj
+offset23552j
+length262144p*f€€Bdown3.model.0.weightj
+locationfunie.onnx.dataj
+offset851968j
+length2097152p*g€€Bdown4.model.0.weightj
+locationfunie.onnx.dataj
+offset2949120j
+length4194304p*g€€Bdown5.model.0.weightj
+locationfunie.onnx.dataj
+offset7143424j
+length4194304p*f€€Bup1.model.0.weightj
+locationfunie.onnx.dataj
+offset11337728j
+length4194304p*f€€Bup2.model.0.weightj
+locationfunie.onnx.dataj
+offset19726336j
+length8388608p*f€€Bup3.model.0.weightj
+locationfunie.onnx.dataj
+offset15532032j
+length4194304p*b€ Bup4.model.0.weightj
+locationfunie.onnx.dataj
+offset285696j
+length524288p*[@Bfinal.2.weightj
+locationfunie.onnx.dataj
+offset11264j
+length12288p*[€Bdown2.model.0.weight_biasj
+locationfunie.onnx.dataj
+offset0j
+length512p*_€Bdown3.model.0.weight_biasj
+locationfunie.onnx.dataj
+offset1024j
+length1024p*_€Bdown4.model.0.weight_biasj
+locationfunie.onnx.dataj
+offset2048j
+length1024p*]€Bup1.model.0.weight_biasj
+locationfunie.onnx.dataj
+offset3072j
+length1024p*]€Bup2.model.0.weight_biasj
+locationfunie.onnx.dataj
+offset4096j
+length1024p*[€Bup3.model.0.weight_biasj
+locationfunie.onnx.dataj
+offset512j
+length512p*  Bup4.model.0.weight_biasJ€ îµ:Xæ!<ö¥Ù=Þ…)>ð>½ä	½|2_>è¿¦½}O¹={¬V> ôt>ÄŠ½<B£”=
+Ó’=êÊ¬=D‰½€”ˆ¼€Är;ÀG½>°hú=¬S½RÀ2¼ôBÛ=6h9¾·»½ˆ.}<  ;Jî<Ê°=,ÝK>ïß½±?>*Bval_70J  €?  €?   @   @ZÌ
+input
+
+batch
+
+€
+€"=
+/pkg.torch.export.graph_signature.InputSpec.kind
+USER_INPUT"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"&
+!pkg.torch.onnx.original_node_namexb“
+output
+
+batch
+
+€
+€"?
+0pkg.torch.export.graph_signature.OutputSpec.kindUSER_OUTPUT")
+!pkg.torch.onnx.original_node_nametanhjÌ
+final.2.bias
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"3
+!pkg.torch.onnx.original_node_namep_final_2_biasjè
+down1.model.0.weight
+
+ 
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone";
+!pkg.torch.onnx.original_node_namep_down1_model_0_weightj/
+down2.model.0.weight
+
+€
+ 
+
+j0
+down3.model.0.weight
+
+€
+€
+
+j0
+down4.model.0.weight
+
+€
+€
+
+jê
+down5.model.0.weight
+
+€
+€
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone";
+!pkg.torch.onnx.original_node_namep_down5_model_0_weightj.
+up1.model.0.weight
+
+€
+€
+
+j.
+up2.model.0.weight
+
+€
+€
+
+j.
+up3.model.0.weight
+
+€
+€
+
+j-
+up4.model.0.weight
+
+€
+ 
+
+jÜ
+final.2.weight
+
+
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"5
+!pkg.torch.onnx.original_node_namep_final_2_weightj(
+down2.model.0.weight_bias
+	
+€j(
+down3.model.0.weight_bias
+	
+€j(
+down4.model.0.weight_bias
+	
+€j&
+up1.model.0.weight_bias
+	
+€j&
+up2.model.0.weight_bias
+	
+€j&
+up3.model.0.weight_bias
+	
+€j%
+up4.model.0.weight_bias
+
+
+ j
+val_70
+
+
+j'
+conv2d
+
+batch
+ 
+€
+€j+
+
+leaky_relu
+
+batch
+ 
+€
+€j'
+getitem
+
+batch
+€
+@
+@j,
+leaky_relu_1
+
+batch
+€
+@
+@j)
+	getitem_3
+
+batch
+€
+ 
+ j,
+leaky_relu_2
+
+batch
+€
+ 
+ j)
+	getitem_6
+
+batch
+€
+
+j,
+leaky_relu_3
+
+batch
+€
+
+j(
+conv2d_4
+
+batch
+€
+
+j,
+leaky_relu_4
+
+batch
+€
+
+j)
+	getitem_9
+
+batch
+€
+
+j$
+relu
+
+batch
+€
+
+j#
+cat
+
+batch
+€
+
+j*
+
+getitem_12
+
+batch
+€
+ 
+ j&
+relu_1
+
+batch
+€
+ 
+ j%
+cat_1
+
+batch
+€
+ 
+ j*
+
+getitem_15
+
+batch
+€
+@
+@j&
+relu_2
+
+batch
+€
+@
+@j%
+cat_2
+
+batch
+€
+@
+@j+
+
+getitem_18
+
+batch
+ 
+€
+€j'
+relu_3
+
+batch
+ 
+€
+€j&
+cat_3
+
+batch
+@
+€
+€j3
+upsample_nearest2d
+
+batch
+@
+€
+€j)
+conv2d_5
+
+batch
+
+€
+€‚³
+0pkg.torch.export.ExportedProgram.graph_signatureþ
+# inputs
+p_down1_model_0_weight: PARAMETER target='down1.model.0.weight'
+p_down2_model_0_weight: PARAMETER target='down2.model.0.weight'
+p_down2_model_1_weight: PARAMETER target='down2.model.1.weight'
+p_down2_model_1_bias: PARAMETER target='down2.model.1.bias'
+p_down3_model_0_weight: PARAMETER target='down3.model.0.weight'
+p_down3_model_1_weight: PARAMETER target='down3.model.1.weight'
+p_down3_model_1_bias: PARAMETER target='down3.model.1.bias'
+p_down4_model_0_weight: PARAMETER target='down4.model.0.weight'
+p_down4_model_1_weight: PARAMETER target='down4.model.1.weight'
+p_down4_model_1_bias: PARAMETER target='down4.model.1.bias'
+p_down5_model_0_weight: PARAMETER target='down5.model.0.weight'
+p_up1_model_0_weight: PARAMETER target='up1.model.0.weight'
+p_up1_model_1_weight: PARAMETER target='up1.model.1.weight'
+p_up1_model_1_bias: PARAMETER target='up1.model.1.bias'
+p_up2_model_0_weight: PARAMETER target='up2.model.0.weight'
+p_up2_model_1_weight: PARAMETER target='up2.model.1.weight'
+p_up2_model_1_bias: PARAMETER target='up2.model.1.bias'
+p_up3_model_0_weight: PARAMETER target='up3.model.0.weight'
+p_up3_model_1_weight: PARAMETER target='up3.model.1.weight'
+p_up3_model_1_bias: PARAMETER target='up3.model.1.bias'
+p_up4_model_0_weight: PARAMETER target='up4.model.0.weight'
+p_up4_model_1_weight: PARAMETER target='up4.model.1.weight'
+p_up4_model_1_bias: PARAMETER target='up4.model.1.bias'
+p_final_2_weight: PARAMETER target='final.2.weight'
+p_final_2_bias: PARAMETER target='final.2.bias'
+b_down2_model_1_running_mean: BUFFER target='down2.model.1.running_mean' persistent=True
+b_down2_model_1_running_var: BUFFER target='down2.model.1.running_var' persistent=True
+b_down2_model_1_num_batches_tracked: BUFFER target='down2.model.1.num_batches_tracked' persistent=True
+b_down3_model_1_running_mean: BUFFER target='down3.model.1.running_mean' persistent=True
+b_down3_model_1_running_var: BUFFER target='down3.model.1.running_var' persistent=True
+b_down3_model_1_num_batches_tracked: BUFFER target='down3.model.1.num_batches_tracked' persistent=True
+b_down4_model_1_running_mean: BUFFER target='down4.model.1.running_mean' persistent=True
+b_down4_model_1_running_var: BUFFER target='down4.model.1.running_var' persistent=True
+b_down4_model_1_num_batches_tracked: BUFFER target='down4.model.1.num_batches_tracked' persistent=True
+b_up1_model_1_running_mean: BUFFER target='up1.model.1.running_mean' persistent=True
+b_up1_model_1_running_var: BUFFER target='up1.model.1.running_var' persistent=True
+b_up1_model_1_num_batches_tracked: BUFFER target='up1.model.1.num_batches_tracked' persistent=True
+b_up2_model_1_running_mean: BUFFER target='up2.model.1.running_mean' persistent=True
+b_up2_model_1_running_var: BUFFER target='up2.model.1.running_var' persistent=True
+b_up2_model_1_num_batches_tracked: BUFFER target='up2.model.1.num_batches_tracked' persistent=True
+b_up3_model_1_running_mean: BUFFER target='up3.model.1.running_mean' persistent=True
+b_up3_model_1_running_var: BUFFER target='up3.model.1.running_var' persistent=True
+b_up3_model_1_num_batches_tracked: BUFFER target='up3.model.1.num_batches_tracked' persistent=True
+b_up4_model_1_running_mean: BUFFER target='up4.model.1.running_mean' persistent=True
+b_up4_model_1_running_var: BUFFER target='up4.model.1.running_var' persistent=True
+b_up4_model_1_num_batches_tracked: BUFFER target='up4.model.1.num_batches_tracked' persistent=True
+x: USER_INPUT
+
+# outputs
+tanh: USER_OUTPUT
+‚J
+2pkg.torch.export.ExportedProgram.range_constraints{s77: VR[0, int_oo]}B
+ 
